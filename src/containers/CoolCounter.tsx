@@ -3,6 +3,7 @@ import { Button, Text, View } from "react-native";
 
 interface CoolCounterProps {
   startingCount: number;
+  updateCounter: (counter: number) => void;
 }
 interface CoolCounterState {
   counter: number;
@@ -22,7 +23,7 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   }
 
   public static getDerivedStateFromProps(props: CoolCounterProps, state: CoolCounterState) {
-    console.log("::: in getDerivedStateFromProps :::");
+    // console.log("::: in getDerivedStateFromProps :::");
     if (props.startingCount !== state.prevCount) {
       return {
         counter: props.startingCount,
@@ -50,9 +51,13 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   }
 
   private onAddButtonPress = () => {
+    const counter = this.state.counter + this.state.quantity;
+    // setting component state
     this.setState({
-      counter: this.state.counter + this.state.quantity
+      counter
     });
+    // updating parent state counter
+    this.props.updateCounter(counter);
   }
 
 
