@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Text, View } from "react-native";
+import { connect } from "react-redux";
+import { updateCounter } from "../redux";
 
 interface CoolCounterProps {
   startingCount: number;
@@ -19,7 +21,7 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
       counter: 0,
       quantity: 0
     };
-    console.log("::: in constructor :::");
+    // console.log("::: in constructor :::");
   }
 
   public static getDerivedStateFromProps(props: CoolCounterProps, state: CoolCounterState) {
@@ -34,7 +36,7 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   }
 
   public componentDidUpdate(prevProps: CoolCounterProps, prevState: CoolCounterState) {
-    console.log("::: in componentDidUpdate :::");
+    // console.log("::: in componentDidUpdate :::");
   }
 
 
@@ -75,4 +77,4 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   }
 }
 
-export default CoolCounter;
+export default connect(undefined, { updateCounter })(CoolCounter);
