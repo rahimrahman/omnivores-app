@@ -6,6 +6,7 @@ import { updateCounter } from "../redux";
 interface CoolCounterProps {
   startingCount: number;
   updateCounter: (counter: number) => void;
+  dispatch: (props: any) => void;
 }
 interface CoolCounterState {
   counter: number;
@@ -16,6 +17,7 @@ interface CoolCounterState {
 class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   constructor(props: CoolCounterProps) {
     super(props);
+    console.log(props);
 
     this.state = {
       counter: 0,
@@ -59,7 +61,8 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
       counter
     });
     // updating parent state counter
-    this.props.updateCounter(counter);
+    // this.props.updateCounter(counter);
+    this.props.dispatch({ type: "updateCounter", payload: { counter }})
   }
 
 
@@ -77,4 +80,4 @@ class CoolCounter extends React.Component<CoolCounterProps, CoolCounterState> {
   }
 }
 
-export default connect(undefined, { updateCounter })(CoolCounter);
+export default connect()(CoolCounter);
